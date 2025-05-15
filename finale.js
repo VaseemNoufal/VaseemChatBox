@@ -4,6 +4,12 @@
     const OPENROUTER_API_KEY = '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'; // 🔁 Replace this
     const businessContext = "We are Build Care, a company specializing in building maintenance services. We only work from 1 to 2 am.";
     const clientId = window.location.hostname;
+    const settingsbox = window.ChatboxSettings || {};
+    const themeColor = settingsbox.themecolor || "#0d6efd";
+    const textColor = settingsbox.txtcolor || "#1e293b";
+    const welcomemsg = settingsbox.title || "Vaseems Chatbox got it?";
+    const position = settingsbox.position === "left" ? "left" : "right";
+    const systemPrompt = settingsbox.companyInfo || "";
 
     const style = document.createElement('style');
     style.textContent = `
@@ -17,14 +23,14 @@
 }
 
 :root {
-    --primary-color: #2563eb;
-    --primary-hover: #1d4ed8;
+    --primary-color: ${themeColor};
+    --primary-hover: ${themeColor};
     --bg-color: #f8fafc;
     --chat-bg: #ffffff;
-    --text-primary: #1e293b;
+    --text-primary: ${textColor};
     --text-secondary: #64748b;
     --border-color: #e2e8f0;
-    --user-msg-bg: #2563eb;
+    --user-msg-bg: ${themeColor};
     --bot-msg-bg: #f1f5f9;
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
@@ -528,7 +534,7 @@ body {
                 <!-- Welcome message -->
                 <div class="message bot welcome-message">
                     <div class="message-content">
-                        <p>👋 Hi! I'm your AI assistant. How can I help you today?</p>
+                        <p>${welcomemsg}</p>
                     </div>
                 </div>
             </div>
@@ -563,6 +569,21 @@ body {
     const minimizeButton = document.getElementById('minimizeChatb');
     const clearButton = document.getElementById('clearChat');
     let isChatOpen = false;
+
+    switch (position) {
+        case "left":
+            chatToggle.style.left = "20px";
+            chatToggle.style.right = "auto";
+            appContainer.style.left = "20px";
+            appContainer.style.right = "auto";
+            break;
+        case "right":
+            chatToggle.style.right = "20px";
+            chatToggle.style.left = "auto";
+            appContainer.style.right = "20px";
+            appContainer.style.left = "auto";
+            break;
+    }
 
     chatToggle.addEventListener('click', () => {
         isChatOpen = !isChatOpen;
@@ -635,7 +656,7 @@ body {
 
     async function getAIResponse(userText) {
         const messages = [
-            { role: "system", content: `You are an assistant for: ${businessContext}` },
+            { role: "system", content: `You are an assistant for: ${systemPrompt}` },
             { role: "user", content: userText }
         ];
         const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
