@@ -7,7 +7,7 @@
     const settingsbox = window.ChatboxSettings || {};
     const themeColor = settingsbox.themecolor || "#0d6efd";
     const textColor = settingsbox.txtcolor || "#1e293b";
-    const welcomemsg = settingsbox.title || "Vaseems Chatbox got it?";
+    const welcomemsg = settingsbox.welcomemsg || "Vaseems Chatbox got it?";
     const position = settingsbox.position === "left" ? "left" : "right";
     const systemPrompt = settingsbox.companyInfo || "";
 
@@ -570,6 +570,7 @@ body {
     const clearButton = document.getElementById('clearChat');
     let isChatOpen = false;
 
+    if (window.innerWidth > 480) {
     switch (position) {
         case "left":
             chatToggle.style.left = "20px";
@@ -584,6 +585,7 @@ body {
             appContainer.style.left = "auto";
             break;
     }
+}
 
     chatToggle.addEventListener('click', () => {
         isChatOpen = !isChatOpen;
@@ -594,7 +596,7 @@ body {
     clearButton.addEventListener('click', () => {
         if (chatMessages) {
             chatMessages.innerHTML = `
-            <div class="message bot welcome-message"><div class="message-content"><p>👋 Hi! I'm your AIassistant. How can I help you today?</p></div></div>`; // ✅ Clears all children
+            <div class="message bot welcome-message"><div class="message-content"><p>${welcomemsg}</p></div></div>`; // ✅ Clears all children
         }
     });
     document.addEventListener('click', (e) => {
