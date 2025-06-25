@@ -1,7 +1,7 @@
 (function () {
-    const SUPABASE_URL = 'https://ixqmzlvcrxwkeratqpwr.supabase.co'; // 🔁 Replace this
+    const SUPABASE_URL = 'https://ixqmzlvcrxwkeratqpwr.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml4cW16bHZjcnh3a2VyYXRxcHdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYzNDA4NDksImV4cCI6MjA2MTkxNjg0OX0.htpU4OontlKLHv6sjwebMsoT8v-bjyChlI3PRZUEckI'; // 🔁 Replace this
-    const OPENROUTER_API_KEY = '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'; // 🔁 Replace this
+    const OPENROUTER_API_KEY = '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'; 
     const businessContext = "We are Build Care, a company specializing in building maintenance services. We only work from 1 to 2 am.";
     const clientId = window.location.hostname;
     const settingsbox = window.ChatboxSettings || {};
@@ -658,7 +658,7 @@ body {
 
     async function getAIResponse(userText) {
         const messages = [
-            { role: "system", content: `You are an assistant for: ${systemPrompt}` },
+            { role: "system", content: `You are an assistant for: ${systemPrompt} (and try to reply in short terms rather than giving the user a paragraph. if the user asks for a paragraph give them a paragraph)` },
             { role: "user", content: userText }
         ];
         const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
@@ -670,7 +670,7 @@ body {
                 'X-Title': 'AI Chatbot'
             },
             body: JSON.stringify({
-                model: 'openai/gpt-3.5-turbo',
+                model: 'mistralai/mistral-7b-instruct',
                 messages
             })
         });
