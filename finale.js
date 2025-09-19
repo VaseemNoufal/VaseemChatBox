@@ -1,7 +1,7 @@
 (function () {
     const SUPABASE_URL = 'https://ixqmzlvcrxwkeratqpwr.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml4cW16bHZjcnh3a2VyYXRxcHdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYzNDA4NDksImV4cCI6MjA2MTkxNjg0OX0.htpU4OontlKLHv6sjwebMsoT8v-bjyChlI3PRZUEckI'; // 🔁 Replace this
-    const OPENROUTER_API_KEY = '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'; 
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml4cW16bHZjcnh3a2VyYXRxcHdyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYzNDA4NDksImV4cCI6MjA2MTkxNjg0OX0.htpU4OontlKLHv6sjwebMsoT8v-bjyChlI3PRZUEckI'; 
+    const OPENROUTER_API_KEY = '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'; 
     const businessContext = "We are Build Care, a company specializing in building maintenance services. We only work from 1 to 2 am.";
     const clientId = window.location.hostname;
     const settingsbox = window.ChatboxSettings || {};
